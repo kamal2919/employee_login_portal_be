@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const logger = require('./logger');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const db = require('./dbConfig');
 const dotenv = require("dotenv").config();
 const { v4: uuidv4 } = require('uuid');
