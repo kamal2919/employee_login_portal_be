@@ -10,7 +10,7 @@ const updateProfile = async (req,res) => {
     const code = req.params.empcode;
 
     if(!code){
-        logger.info("Employee code not found");
+        logger.info("Employee code not attached");
 
         return res.status(400).send({
             message: "Inavlid Employee Code"
