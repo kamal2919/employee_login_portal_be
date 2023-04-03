@@ -12,6 +12,13 @@ const app = express();
 app.use(cors({
     origin : process.env.VARCEL_DOMAIN
 }));
+
+app.options('*', cors({
+    origin: process.env.VARCEL_DOMAIN,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api/',routes);
