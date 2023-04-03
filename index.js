@@ -10,13 +10,8 @@ const routes = require('./routes');
 
 const app = express();
 
-app.use(cors({
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: 'Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin',
-}));
+app.use(cors());
+app.options('*', cors());
 
   
 app.use(bodyParser.urlencoded({ extended: true }));
