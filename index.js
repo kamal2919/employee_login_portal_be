@@ -10,12 +10,13 @@ const routes = require('./routes');
 const app = express();
 
 app.use(cors({
-    origin : process.env.VARCEL_DOMAIN,
+    origin : '*',
+    methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true
 }));
 
 app.options('*', cors({
-    origin: process.env.VARCEL_DOMAIN,
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
