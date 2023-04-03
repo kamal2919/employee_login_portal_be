@@ -9,7 +9,9 @@ const routes = require('./routes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin : process.env.VARCEL_DOMAIN
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api/',routes);
