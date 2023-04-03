@@ -9,28 +9,13 @@ const routes = require('./routes');
 
 const app = express();
 
-app.use(cors({
-    origin : '*',
-    methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
-    credentials: true
-}));
-
-app.options('*', cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-
-// app.all("*", (req, res, next) => {
-//     if (!req.get("Origin")) return next();
-//     // use '*' here to access any origin
-//     res.set("Access-Control-Allow-Origin", "*");
-//     res.set("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE");
-   
-//     if ("OPTIONS" == req.method) return res.sendStatus(200);
-//     next();
-// });
-
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+    next();
+});
+  
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api/',routes);
