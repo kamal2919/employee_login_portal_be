@@ -13,11 +13,21 @@ app.use(cors({
     origin : process.env.VARCEL_DOMAIN
 }));
 
-app.options('*', cors({
-    origin: process.env.VARCEL_DOMAIN,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
+// app.options('*', cors({
+//     origin: process.env.VARCEL_DOMAIN,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
+app.all("*", (req, res, next) => {
+    if (!req.get("Origin")) return next();
+    // use '*' here to access any origin
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE");
+   
+    if ("OPTIONS" == req.method) return res.sendStatus(200);
+    next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
