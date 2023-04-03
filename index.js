@@ -16,7 +16,7 @@ app.options('*', cors());
   
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/api/',routes);
+app.use('/api',routes);
 
 const port = process.env.PORT;
 
