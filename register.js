@@ -8,6 +8,8 @@ const Employee = require('./employeeSchema');
 
 
 const register = async (req,res) => {
+    res.header('Access-Control-Allow-Origin', process.env.VARCEL_DOMAIN);
+    res.header('Access-Control-Allow-Credentials', 'true');
     try{
         let params = req.body;
         let employeeName = params.name, employeeEmail = params.email, employeePhone = params.phone, employeePass = params.pass, employeeCode = uuidv4();
